@@ -1,0 +1,14 @@
+# IDE specific files
+.vscode/
+.idea/
+
+
+# SQLite database files
+*.sqlite3
+
+
+# Virtual environment
+venv/
+
+
+__pycache__/
