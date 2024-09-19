@@ -5,13 +5,18 @@ fake = Faker()
 MAX_PAGE_NUMBER = 5000
 
 
+# For Capitalization
+def capitalize_name(value):
+    return value.title()
+
+
 # for Authors
 def generate_fake_authors(cursor, n):
     for _ in range(n):
-        authorname = fake.first_name()
-        authorsurname = fake.last_name()
+        authorname = capitalize_name(fake.first_name())
+        authorsurname = capitalize_name(fake.last_name())
         birthdate = fake.date_of_birth().isoformat()
-        birthplace = fake.city()
+        birthplace = capitalize_name(fake.city())
 
         cursor.execute(
             """INSERT INTO Author (authorname, authorsurname, birthdate, birthplace)
@@ -36,7 +41,7 @@ def generate_fake_books(cursor, n):
 
     for _ in range(n):
         authorid = random.choice(author_ids)
-        bookname = fake.catch_phrase()
+        bookname = capitalize_name(fake.catch_phrase())
         category = random.choice(categories)
         pagenumber = random.randint(1, MAX_PAGE_NUMBER)
         publicationdate = fake.date_between(
